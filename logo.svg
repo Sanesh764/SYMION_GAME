@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <rect width="128" height="128" rx="24" fill="#0b2a55"/>
+  <g transform="translate(14,14)">
+    <rect width="46" height="46" rx="8" fill="#f94144"/>
+    <rect x="54" width="46" height="46" rx="8" fill="#577590"/>
+    <rect y="54" width="46" height="46" rx="8" fill="#90be6d"/>
+    <rect x="54" y="54" width="46" height="46" rx="8" fill="#f9c74f"/>
+  </g>
+  <text x="64" y="120" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#ffffff" opacity="0.85">Simon Game</text>
+  <!-- Simple logo reflecting the game's 2x2 color grid -->
+  
+</svg>
+
