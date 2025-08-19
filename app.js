@@ -4,6 +4,53 @@ const buttonColors = ["red", "blue", "green", "yellow"];
     let started = false;
     let level = 0;
 
+    // Ensure a visible favicon in browsers that don't render SVG favicons
+    (function setFavicon() {
+      try {
+        const size = 64;
+        const canvas = document.createElement("canvas");
+        canvas.width = size;
+        canvas.height = size;
+        const ctx = canvas.getContext("2d");
+        if (!ctx) return;
+
+        // Background circle
+        ctx.fillStyle = "#0b2a55";
+        ctx.beginPath();
+        ctx.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2);
+        ctx.fill();
+
+        // 2x2 grid tiles (Simon colors)
+        const tile = (x, y, color) => {
+          ctx.fillStyle = color;
+          ctx.fillRect(x, y, 26, 26);
+        };
+        tile(10, 10, "#f94144"); // red
+        tile(28, 10, "#577590"); // blue
+        tile(10, 28, "#90be6d"); // green
+        tile(28, 28, "#f9c74f"); // yellow
+
+        const dataUrl = canvas.toDataURL("image/png");
+
+        const ensureLink = (sizes) => {
+          let link = document.querySelector(`link[rel="icon"][sizes="${sizes}"]`);
+          if (!link) {
+            link = document.createElement("link");
+            link.rel = "icon";
+            link.type = "image/png";
+            link.sizes = sizes;
+            document.head.appendChild(link);
+          }
+          link.href = dataUrl;
+        };
+
+        ensureLink("32x32");
+        ensureLink("16x16");
+      } catch (e) {
+        // Non-blocking if anything goes wrong
+      }
+    })();
+
     // Start game on keydown
     document.addEventListener("keydown", () => {
       if (!started) {
